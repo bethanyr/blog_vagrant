@@ -14,6 +14,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.berkshelf.enabled = true
 
+  config.vm.network :forwarded_port, host: 4567, guest: 80
+
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
   # config.vm.box_url = "http://domain.com/path/to/above.box"
@@ -89,6 +91,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe "build-essential"
     chef.add_recipe "apache2"
     chef.add_recipe "postgresql"
+    chef.add_recipe "rvm"
   end
   # config.vm.provision :chef_solo do |chef|
   #   chef.cookbooks_path = "../my-recipes/cookbooks"
